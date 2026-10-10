@@ -1,1 +1,27 @@
-{"name":"Beer Oracle","short_name":"Beer Oracle","start_url":"./","display":"standalone","background_color":"#fff5da","theme_color":"#f6d78e","icons":[{"src":"icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icon-512.png","sizes":"512x512","type":"image/png"}]}
+{
+  "name": "Beer Oracle",
+  "short_name": "Beer Oracle",
+  "start_url": "/vogliolabirra/",
+  "display": "standalone",
+  "background_color": "#fff5da",
+  "theme_color": "#f6d78e",
+  "icons": [
+    {
+      "src": "/vogliolabirra/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/vogliolabirra/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "id": "/vogliolabirra/",
+  "scope": "/vogliolabirra/",
+  "display_override": [
+    "standalone"
+  ]
+}
