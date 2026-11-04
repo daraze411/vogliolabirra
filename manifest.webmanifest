@@ -1,27 +1,21 @@
 {
   "name": "Beer Oracle",
   "short_name": "Beer Oracle",
-  "start_url": "/vogliolabirra/",
+  "description": "Il Mastro Birraio risponde alle domande che contano davvero. Oracolo satirico e del tutto inutile.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#fff5da",
-  "theme_color": "#f6d78e",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "lang": "it",
+  "dir": "ltr",
+  "background_color": "#FFF6DE",
+  "theme_color": "#3B2210",
+  "categories": ["entertainment", "lifestyle"],
   "icons": [
-    {
-      "src": "/vogliolabirra/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/vogliolabirra/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "id": "/vogliolabirra/",
-  "scope": "/vogliolabirra/",
-  "display_override": [
-    "standalone"
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }

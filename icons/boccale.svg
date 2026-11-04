@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 140" width="128" height="140">
+  <!-- manico -->
+  <path d="M86 54 h14 a16 16 0 0 1 16 16 v26 a16 16 0 0 1 -16 16 h-14" fill="none" stroke="#3B2210" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M86 54 h14 a16 16 0 0 1 16 16 v26 a16 16 0 0 1 -16 16 h-14" fill="none" stroke="#F2B705" stroke-width="3" stroke-linejoin="round" opacity=".55"/>
+  <!-- corpo -->
+  <rect x="12" y="38" width="76" height="94" rx="11" fill="#E9A10F" stroke="#3B2210" stroke-width="6"/>
+  <rect x="20" y="46" width="11" height="78" rx="5.5" fill="#FFD24D" opacity=".85"/>
+  <rect x="38" y="46" width="6" height="78" rx="3" fill="#FFD24D" opacity=".5"/>
+  <rect x="70" y="46" width="9" height="78" rx="4.5" fill="#C27C0A" opacity=".55"/>
+  <!-- bollicine -->
+  <circle cx="54" cy="104" r="3.5" fill="#FFE9A8"/>
+  <circle cx="60" cy="88" r="2.5" fill="#FFE9A8"/>
+  <circle cx="52" cy="74" r="3" fill="#FFE9A8"/>
+  <circle cx="62" cy="116" r="2" fill="#FFE9A8"/>
+  <!-- schiuma -->
+  <path d="M8 44 C2 30 14 18 26 22 C30 8 50 6 56 16 C64 6 84 8 86 22 C98 20 104 34 94 44 C96 54 84 58 78 50 C72 60 58 58 54 50 C48 60 32 60 30 50 C20 58 6 54 8 44 Z" fill="#FFF6DE" stroke="#3B2210" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="34" cy="32" r="4" fill="#FFFFFF"/>
+  <circle cx="64" cy="26" r="3" fill="#FFFFFF"/>
+</svg>

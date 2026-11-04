@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Aggiorna archivio · Beer Oracle</title>
+  <style>
+    :root { --oro:#F2B705; --crema:#FFF6DE; --marrone:#3B2210; --ambra:#E08A00; }
+    * { box-sizing: border-box; }
+    body { margin:0; padding:20px 16px 40px; background:var(--crema); color:var(--marrone);
+      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin: 0 0 6px; }
+    .box { background:#FFFDF6; border:3px solid var(--marrone); border-radius:18px; box-shadow:4px 4px 0 var(--marrone); padding:16px; margin:18px 0; }
+    label.file { display:block; padding:16px; border:2px dashed var(--ambra); border-radius:14px; text-align:center; cursor:pointer; font-weight:700; }
+    input[type=file] { display:block; margin:10px auto 0; max-width:100%; }
+    a.btn, button { display:inline-block; font:inherit; font-weight:700; padding:12px 18px; background:var(--oro); color:var(--marrone);
+      border:3px solid var(--marrone); border-radius:14px; box-shadow:3px 3px 0 var(--marrone); text-decoration:none; cursor:pointer; }
+    table { width:100%; border-collapse:collapse; font-size:.92rem; }
+    th, td { text-align:left; padding:6px 8px; border-bottom:1px solid #EAD9AE; vertical-align:top; }
+    .ok { color:#2F6B1F; } .warn { color:#9A4A00; } .err { color:#A11; font-weight:700; }
+    pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.85rem; background:var(--crema); padding:10px; border-radius:10px; max-height:240px; overflow:auto; }
+    ol li { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>🍺 Aggiorna l'archivio del Mastro Birraio</h1>
+  <p>Questa pagina trasforma il file Excel delle risposte nel file <code>risposte.json</code> usato dall'app. Tutto avviene nel tuo browser: il file non viene inviato da nessuna parte.</p>
+
+  <div class="box">
+    <label class="file">1. Scegli il file Excel (.xlsx o .xlsm)
+      <input type="file" id="file" accept=".xlsx,.xlsm,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel.sheet.macroEnabled.12">
+    </label>
+    <p id="stato"></p>
+  </div>
+
+  <div class="box" id="esito" hidden>
+    <h2 style="margin-top:0">2. Controlla</h2>
+    <div id="riepilogo"></div>
+    <p><a class="btn" id="scarica" download="risposte.json" href="#">⬇ 3. Scarica risposte.json</a></p>
+    <details><summary>Anteprima del file</summary><pre id="anteprima"></pre></details>
+  </div>
+
+  <div class="box">
+    <h2 style="margin-top:0">Come pubblicare</h2>
+    <ol>
+      <li>Scarica <code>risposte.json</code> con il pulsante qui sopra.</li>
+      <li>Su GitHub apri il repository, entra nella cartella <code>data</code> e scegli <em>Add file → Upload files</em>.</li>
+      <li>Carica il nuovo <code>risposte.json</code> (sostituisce il vecchio) e conferma con <em>Commit changes</em>.</li>
+      <li>Dopo un paio di minuti l'app mostra le nuove risposte. Non serve cambiare altro.</li>
+    </ol>
+    <p>Regole del file Excel: un foglio per domanda (il primo è la Domanda A, il secondo la B), una riga di intestazione con le colonne <strong>Risposta…</strong> e <strong>Stato</strong>, la domanda nella cella A2. Vengono mostrate le risposte con stato <strong>Attiva</strong>, <strong>Nuova</strong> o senza stato; quelle <strong>Da rivedere</strong> ed <strong>Escludere</strong> restano nell'archivio ma non escono nell'app. I testi vengono copiati esattamente come scritti, con un'unica eccezione: «Birrario» diventa sempre «Birraio».</p>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main";
+  var RNS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
+  var VISIBILI = ["Attiva", "Nuova", ""];
+  var urlJson = null;
+
+  function $(id) { return document.getElementById(id); }
+
+  /* --- lettura dello zip (un file .xlsx è un archivio zip) --- */
+  async function leggiZip(buffer) {
+    var v = new DataView(buffer), u8 = new Uint8Array(buffer);
+    var fine = -1;
+    for (var i = buffer.byteLength - 22; i >= Math.max(0, buffer.byteLength - 65557); i--) {
+      if (v.getUint32(i, true) === 0x06054b50) { fine = i; break; }
+    }
+    if (fine < 0) throw new Error("Il file non sembra un Excel valido.");
+    var n = v.getUint16(fine + 10, true), p = v.getUint32(fine + 16, true);
+    var dec = new TextDecoder(), voci = {};
+    for (var k = 0; k < n; k++) {
+      if (v.getUint32(p, true) !== 0x02014b50) throw new Error("Archivio danneggiato.");
+      var metodo = v.getUint16(p + 10, true), dimC = v.getUint32(p + 20, true);
+      var lNome = v.getUint16(p + 28, true), lExtra = v.getUint16(p + 30, true), lComm = v.getUint16(p + 32, true);
+      var locale = v.getUint32(p + 42, true);
+      var nome = dec.decode(u8.subarray(p + 46, p + 46 + lNome));
+      voci[nome] = { metodo: metodo, dimC: dimC, locale: locale };
+      p += 46 + lNome + lExtra + lComm;
+    }
+    return async function (nome) {
+      var e = voci[nome];
+      if (!e) return null;
+      var l = e.locale;
+      var inizio = l + 30 + v.getUint16(l + 26, true) + v.getUint16(l + 28, true);
+      var dati = u8.subarray(inizio, inizio + e.dimC);
+      if (e.metodo === 0) return dec.decode(dati);
+      if (e.metodo !== 8) throw new Error("Compressione non supportata.");
+      var flusso = new Blob([dati]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+      return await new Response(flusso).text();
+    };
+  }
+
+  function xml(testo) { return new DOMParser().parseFromString(testo, "application/xml"); }
+  function testoDi(el) {
+    var t = el.getElementsByTagNameNS(NS, "t"), s = "";
+    for (var i = 0; i < t.length; i++) s += t[i].textContent;
+    return s;
+  }
+  function colonna(rif) { return rif.replace(/[0-9]/g, ""); }
+  function riga(rif) { return parseInt(rif.replace(/[A-Z]/g, ""), 10); }
+  function percorso(base, rel) {
+    if (rel.charAt(0) === "/") return rel.slice(1);
+    var parti = base.split("/"); parti.pop();
+    rel.split("/").forEach(function (x) { if (x === "..") parti.pop(); else if (x !== ".") parti.push(x); });
+    return parti.join("/");
+  }
+
+  async function leggiExcel(buffer) {
+    var leggi = await leggiZip(buffer);
+    var condivise = [];
+    var ss = await leggi("xl/sharedStrings.xml");
+    if (ss) {
+      var si = xml(ss).getElementsByTagNameNS(NS, "si");
+      for (var i = 0; i < si.length; i++) condivise.push(testoDi(si[i]));
+    }
+    var wb = xml(await leggi("xl/workbook.xml"));
+    var rels = xml(await leggi("xl/_rels/workbook.xml.rels")).getElementsByTagName("Relationship");
+    var mappa = {};
+    for (var r = 0; r < rels.length; r++) mappa[rels[r].getAttribute("Id")] = rels[r].getAttribute("Target");
+
+    var fogli = [], el = wb.getElementsByTagNameNS(NS, "sheet");
+    for (var f = 0; f < el.length; f++) {
+      var id = el[f].getAttributeNS(RNS, "id") || el[f].getAttribute("r:id");
+      var file = percorso("xl/workbook.xml", mappa[id]);
+      var doc = xml(await leggi(file));
+      var celle = {};
+      var c = doc.getElementsByTagNameNS(NS, "c");
+      for (var j = 0; j < c.length; j++) {
+        var rif = c[j].getAttribute("r"), tipo = c[j].getAttribute("t");
+        var vEl = c[j].getElementsByTagNameNS(NS, "v")[0], val = null;
+        if (tipo === "s" && vEl) val = condivise[parseInt(vEl.textContent, 10)];
+        else if (tipo === "inlineStr") val = testoDi(c[j]);
+        else if (vEl) val = vEl.textContent;
+        if (val === null) continue;
+        var rr = riga(rif);
+        (celle[rr] = celle[rr] || {})[colonna(rif)] = val;
+      }
+      fogli.push({ nome: el[f].getAttribute("name"), celle: celle });
+    }
+    return fogli;
+  }
+
+  function convertiFoglio(foglio, indice) {
+    var celle = foglio.celle, righe = Object.keys(celle).map(Number).sort(function (a, b) { return a - b; });
+    var intest = null, colTesto = null, colStato = null, colNum = null;
+    for (var i = 0; i < righe.length && !intest; i++) {
+      var r = celle[righe[i]];
+      for (var col in r) {
+        var v = String(r[col]).trim().toLowerCase();
+        if (v === "stato") colStato = col;
+        if (v.indexOf("risposta") === 0) colTesto = col;
+        if (v === "n." || v === "n" || v === "numero") colNum = col;
+      }
+      if (colStato && colTesto) intest = righe[i]; else { colStato = colTesto = colNum = null; }
+    }
+    if (!intest) throw new Error('Nel foglio "' + foglio.nome + '" non trovo le colonne "Risposta" e "Stato".');
+
+    var domanda = (celle[2] && celle[2].A) ? String(celle[2].A).trim() : foglio.nome;
+    var risposte = [];
+    righe.forEach(function (n) {
+      if (n <= intest) return;
+      var t = celle[n][colTesto];
+      if (t === undefined || String(t).trim() === "") return;
+      var num = colNum ? parseFloat(celle[n][colNum]) : NaN;
+      risposte.push({ n: isNaN(num) ? risposte.length + 1 : num, testo: nomeGiusto(String(t)), stato: String(celle[n][colStato] || "").trim() });
+    });
+    return { id: indice === 0 ? "A" : "B", domanda: domanda, risposte: risposte };
+  }
+
+  // L'unica correzione ammessa: il personaggio si chiama sempre "Mastro Birraio"
+  function nomeGiusto(t) {
+    return t.replace(/BIRRARIO/g, "BIRRAIO").replace(/Birrario/g, "Birraio").replace(/birrario/g, "birraio");
+  }
+
+  function riepilogo(dati) {
+    var html = "";
+    dati.domande.forEach(function (d) {
+      var conta = {};
+      d.risposte.forEach(function (r) { var s = r.stato || "(senza stato)"; conta[s] = (conta[s] || 0) + 1; });
+      var visibili = d.risposte.filter(function (r) { return VISIBILI.indexOf(r.stato) !== -1; }).length;
+      html += "<h3>Domanda " + d.id + ": " + esc(d.domanda) + "</h3><table><tr><th>Stato</th><th>Risposte</th></tr>";
+      Object.keys(conta).forEach(function (s) { html += "<tr><td>" + esc(s) + "</td><td>" + conta[s] + "</td></tr>"; });
+      html += "</table><p class='" + (visibili ? "ok" : "err") + "'>Mostrate nell'app: <strong>" + visibili + "</strong></p>";
+      var strani = d.risposte.filter(function (r) {
+        return ["Attiva", "Nuova", "Da rivedere", "Escludere", ""].indexOf(r.stato) === -1;
+      });
+      if (strani.length) html += "<p class='warn'>Attenzione: stati non riconosciuti (righe " + strani.map(function (r) { return r.n; }).join(", ") + "). Queste risposte non verranno mostrate.</p>";
+    });
+    return html;
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  $("file").addEventListener("change", async function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    $("stato").className = ""; $("stato").textContent = "Il Mastro Birraio sta leggendo…";
+    $("esito").hidden = true;
+    try {
+      if (typeof DecompressionStream === "undefined") throw new Error("Questo browser è troppo vecchio: usa una versione recente di Chrome, Edge, Firefox o Safari.");
+      var fogli = await leggiExcel(await file.arrayBuffer());
+      if (fogli.length < 2) throw new Error("Servono almeno due fogli: uno per la Domanda A e uno per la Domanda B.");
+      var oggi = new Date();
+      var dati = {
+        aggiornato: oggi.getFullYear() + "-" + String(oggi.getMonth() + 1).padStart(2, "0") + "-" + String(oggi.getDate()).padStart(2, "0"),
+        fonte: file.name,
+        statiVisibili: VISIBILI,
+        domande: [convertiFoglio(fogli[0], 0), convertiFoglio(fogli[1], 1)]
+      };
+      var json = JSON.stringify(dati, null, 2);
+      if (urlJson) URL.revokeObjectURL(urlJson);
+      urlJson = URL.createObjectURL(new Blob([json], { type: "application/json" }));
+      $("scarica").href = urlJson;
+      $("riepilogo").innerHTML = riepilogo(dati);
+      $("anteprima").textContent = json;
+      $("esito").hidden = false;
+      $("stato").className = "ok"; $("stato").textContent = "Fatto. Controlla il riepilogo e scarica il file.";
+    } catch (err) {
+      $("stato").className = "err"; $("stato").textContent = err.message || String(err);
+    }
+  });
+})();
+</script>
+</body>
+</html>

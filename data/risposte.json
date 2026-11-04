@@ -1,0 +1,453 @@
+{
+  "aggiornato": "2026-11-04",
+  "fonte": "Beer_Oracle_Archivio_Risposte.xlsm",
+  "statiVisibili": [
+    "Attiva",
+    "Nuova",
+    ""
+  ],
+  "domande": [
+    {
+      "id": "A",
+      "domanda": "Quante birre dovrei bere oggi?",
+      "risposte": [
+        {
+          "n": 1,
+          "testo": "Una sola, ma è enorme.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 2,
+          "testo": "Più di ieri.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 3,
+          "testo": "Tante quante sono le stelle nel cielo",
+          "stato": "Attiva"
+        },
+        {
+          "n": 4,
+          "testo": "Una per ogni volta che hai bestemmiato",
+          "stato": "Attiva"
+        },
+        {
+          "n": 5,
+          "testo": "Due per ogni volta che hai pensato all’Impero Romano",
+          "stato": "Attiva"
+        },
+        {
+          "n": 6,
+          "testo": "24, ma non più di una all’ora",
+          "stato": "Attiva"
+        },
+        {
+          "n": 7,
+          "testo": "24, ma tutte in un’ora",
+          "stato": "Attiva"
+        },
+        {
+          "n": 8,
+          "testo": "Pi greco",
+          "stato": "Attiva"
+        },
+        {
+          "n": 9,
+          "testo": "La tua età meno la metà della tua età. Moltiplica poi per due e non uscire di casa",
+          "stato": "Attiva"
+        },
+        {
+          "n": 10,
+          "testo": "Una per ogni promessa che hai fatto di smettere",
+          "stato": "Attiva"
+        },
+        {
+          "n": 11,
+          "testo": "Un numero primo. Sceglilo con prudenza",
+          "stato": "Attiva"
+        },
+        {
+          "n": 12,
+          "testo": "Chiedilo al barista: è lui che tiene la contabilità",
+          "stato": "Attiva"
+        },
+        {
+          "n": 13,
+          "testo": "Bevine tantissime.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 14,
+          "testo": "Bevine quante pensi di meritarti.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 15,
+          "testo": "Una per ogni volta che hai detto “Bella Venezia, ma non ci vivrei”.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 16,
+          "testo": "Prendi un mazzo di carte da poker. Elimina tutti i valori sotto il 5. Mescola bene. Pesca e buona fortuna.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 17,
+          "testo": "Se vuoi bene a Marty McFly, bevine tre. Altrimenti, zero.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 18,
+          "testo": "666, ma solo se pensi che Lucifero sia stato frainteso.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 19,
+          "testo": "Una per tutte le volte che hai detto “Vabbè, solo una stasera...” e poi ti sei svegliato su un tavolo da biliardo in un ARCI di Imperia, vestito da Super Mario.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 20,
+          "testo": "Tante quanti sono i colori della maglia della tua squadra.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 21,
+          "testo": "Una per ogni volta che hai pensato di rubare lo stipendio.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 22,
+          "testo": "Tante, tantissime, esagera!",
+          "stato": "Attiva"
+        },
+        {
+          "n": 23,
+          "testo": "Tanti quanti sono gli Oscar vinti dal tuo film preferito. (Consiglio: il tuo film preferito potrebbe essere Ben Hur!)",
+          "stato": "Attiva"
+        },
+        {
+          "n": 24,
+          "testo": "Una per ogni membro della tua band preferita (valgono anche gli ex membri? Scegli tu!)",
+          "stato": "Attiva"
+        },
+        {
+          "n": 25,
+          "testo": "Tante quante indica il numero di maglia del tuo calciatore preferito.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 26,
+          "testo": "101, perché ami i dalmata.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 27,
+          "testo": "17, perché pensi che essere superstizioso porti sfortuna.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 28,
+          "testo": "Una per ogni volta che hai pensato di cagare sulla scrivania del tuo capo.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 29,
+          "testo": "Una per ogni volta che ti sei messo in malattia per non andare al lavoro.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 30,
+          "testo": "12, per il gusto di dire \"ho bevuto una dozzina di birre\".",
+          "stato": "Attiva"
+        },
+        {
+          "n": 31,
+          "testo": "Nessuna.\n...\n...\nScherzo, dacci dentro, beone!",
+          "stato": "Nuova"
+        },
+        {
+          "n": 32,
+          "testo": "10. O, se preferisci, la somma teosofica di 4.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 33,
+          "testo": "2, come le dimensioni della Terra.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 34,
+          "testo": "3, come la Trinità: Padre, Figlio e Spirito Sbronzo.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 35,
+          "testo": "Tante quanti i tagli della carne bovina di cui non sapevi nulla. (Vai qui -> https://it.wikipedia.org/wiki/Tagli_di_carne_bovina)",
+          "stato": "Nuova"
+        },
+        {
+          "n": 36,
+          "testo": "33, se sei di Trento. Altrimenti fai tu, non posso dirti sempre tutto.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 37,
+          "testo": "88. Come le miglia orarie per viaggiare nel tempo.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 38,
+          "testo": "Una per tutte le volte che hai finto di aver apprezzato un film solo per non sentirti stupido/a.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 39,
+          "testo": "96, se il portiere della tua squadra ha parato un rigore all'ultimo secondo in un derby.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 40,
+          "testo": "La risposta è dentro di te. O nelle analisi del sangue.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 41,
+          "testo": "Ascolta una canzone a caso degli 883: bevi una birra per ogni accento sbagliato.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 42,
+          "testo": "Tante quante sono le persone che verrebbero al tuo funerale. Quindi oggi berrai molto poco.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 43,
+          "testo": "Una per ogni tuo talento nascosto. Risparmierai un po' di soldi oggi.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 44,
+          "testo": "Una per ogni volta che hai detto «Non sono razzista, ma...». E tanti saluti al tuo fegato.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 45,
+          "testo": "Una per ogni volta che hai finto di preferire il vino alla birra per fare colpo su qualcuno. Il Mastro Birraio ti giudica.",
+          "stato": "Nuova"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "domanda": "Quale birra dovrei bere oggi?",
+      "risposte": [
+        {
+          "n": 1,
+          "testo": "Quella che vuoi, basta che sia birra",
+          "stato": "Attiva"
+        },
+        {
+          "n": 2,
+          "testo": "Rossa, come i capelli di una ragazza irlandese che danzano al ritmo di una brezza",
+          "stato": "Attiva"
+        },
+        {
+          "n": 3,
+          "testo": "Amara, perché già la vita è troppo dolce",
+          "stato": "Attiva"
+        },
+        {
+          "n": 4,
+          "testo": "Fruttata, perché hai dei gusti orribili",
+          "stato": "Attiva"
+        },
+        {
+          "n": 5,
+          "testo": "Nera, come il batacchio di un manzo nero in una notte senza luna nella prateria",
+          "stato": "Attiva"
+        },
+        {
+          "n": 6,
+          "testo": "Bionda, perché sei una persona semplice",
+          "stato": "Attiva"
+        },
+        {
+          "n": 7,
+          "testo": "IPA, APA, CGIL, CISL e UIL",
+          "stato": "Attiva"
+        },
+        {
+          "n": 8,
+          "testo": "Bock, per darti un tono da intenditore",
+          "stato": "Attiva"
+        },
+        {
+          "n": 9,
+          "testo": "Moretti da 66 cl, per darti un tono da muratore",
+          "stato": "Attiva"
+        },
+        {
+          "n": 10,
+          "testo": "Una Dreher calda",
+          "stato": "Attiva"
+        },
+        {
+          "n": 11,
+          "testo": "Una birra artigianale, ma solo se ti è arrivato lo stipendio",
+          "stato": "Attiva"
+        },
+        {
+          "n": 12,
+          "testo": "Quella con l’etichetta più incomprensibile",
+          "stato": "Attiva"
+        },
+        {
+          "n": 13,
+          "testo": "Una pils, perché oggi fingi di essere equilibrato",
+          "stato": "Attiva"
+        },
+        {
+          "n": 14,
+          "testo": "Quella alla spina. Anche il Mastro Birraio ha dei principi",
+          "stato": "Attiva"
+        },
+        {
+          "n": 15,
+          "testo": "Bsaaaa somo snronzo marchio!?/!!",
+          "stato": "Attiva"
+        },
+        {
+          "n": 16,
+          "testo": "La Kingfisher, detta anche “la birra che sa di Gange e piscio”.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 17,
+          "testo": "La Guinness, perché al pub non puoi prendere il caffè.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 18,
+          "testo": "Una birra bosniaca preparata da un ex soldato cieco che usa solo luppoli selezionati da Pedro, il suo amico scimpanzé fuggito da un gruppo di circensi di centrodestra.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 19,
+          "testo": "Quella in offerta alla Lidl.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 20,
+          "testo": "Una birra affumicata, perché sei un hipster.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 21,
+          "testo": "La Ceres, perché sei più vicino al primate che all’uomo.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 22,
+          "testo": "Birra aromatizzata al disagio.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 23,
+          "testo": "Birra del discount, rigorosamente in lattina, con improbabili nomi tedeschi.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 24,
+          "testo": "La Poretti, per il fascino dei suoi 517 luppoli.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 25,
+          "testo": "Quella che hanno i tuoi amici in frigo. Autoinvitati a casa loro.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 26,
+          "testo": "Una bella cervogia, bevuta insieme ai popoli celti.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 27,
+          "testo": "La BrewDog \"The End of History\", una birretta dalla gradazione alcoolica importante (55%), imbottigliata dentro animali impagliati. Non ho inventato nulla.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 28,
+          "testo": "L'islandese Hvalur 2. Nella lista degli ingredienti leggiamo: testicoli di balena affumicati con sterco di pecora. All'Unione Europea non piace questo elemento.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 29,
+          "testo": "La birra all'aglio, prodotta nell'isola di Wight. Prima si beve, poi si limona.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 30,
+          "testo": "L'Ichnusa non filtrata, perché ti hanno convinto che sia buona. Spoiler: l'unica cosa davvero buona è il marketing.",
+          "stato": "Attiva"
+        },
+        {
+          "n": 31,
+          "testo": "Birra analcolica, perché sei incinta. Plot twist!",
+          "stato": "Nuova"
+        },
+        {
+          "n": 32,
+          "testo": "La Rocky Mountain Oyster Stout. Una birra con le palle. Letteralmente. (Spoiler: testicoli di toro).",
+          "stato": "Nuova"
+        },
+        {
+          "n": 33,
+          "testo": "La \"HEY DAD, DID YOU CHANGE THE PASSWORD ON OUR DISNEY + ACCOUNT? MY EX-GIRLFRIEND IS TRYING TO USE IT AND CAN’T GET IN.\" Pensi che non esista? Dai, scatena Google!",
+          "stato": "Nuova"
+        },
+        {
+          "n": 34,
+          "testo": "La tua preferita. Te lo meriti: sei speciale.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 35,
+          "testo": "Una birra siciliana, per poi passare il resto della giornata a imitare, male, don Vito Corleone.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 36,
+          "testo": "La birra che bevevano i tuoi genitori quando erano giovani. È il momento di scoprire da dove arrivano tutti i tuoi problemi.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 37,
+          "testo": "Una birra senza glutine, senza alcol, senza zuccheri e senza sapore. Puoi anche limitarti a guardare il bicchiere.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 38,
+          "testo": "Una stout invecchiata in botti di whisky, prodotta da due galeotti che si fingono frati. Costa quanto una cena, ma diamine, che goduria!",
+          "stato": "Nuova"
+        },
+        {
+          "n": 39,
+          "testo": "Una lager industriale, in un bicchiere di plastica con scritto il tuo nome sopra con il pennarello, alla festa di compleanno della compagna di classe di tua figlia.",
+          "stato": "Nuova"
+        },
+        {
+          "n": 40,
+          "testo": "Una birra artigianale con sentori di acacia, cuoio, stalla e muschio. Il Mastro Birraio consiglia un'ispezione sanitaria al birrificio.",
+          "stato": ""
+        },
+        {
+          "n": 41,
+          "testo": "Quella prodotta da un microbirrificio aperto da tre amici di fantacalcio, stempiati, grassi e divorziati. Costa 11 euro e sa di rancore.",
+          "stato": ""
+        }
+      ]
+    }
+  ]
+}
