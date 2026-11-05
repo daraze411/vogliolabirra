@@ -90,6 +90,26 @@
     if (pos < testo.length) elemento.appendChild(document.createTextNode(testo.slice(pos)));
   }
 
+  // Sullo smartphone riduce il carattere delle risposte lunghe finché stanno nel riquadro
+  var SMARTPHONE = window.matchMedia("(max-width: 819px)");
+  var MINIMO = 13;
+
+  function adatta(box) {
+    var p = box.querySelector(".risposta-testo");
+    if (!p) return;
+    p.style.fontSize = "";
+    if (!SMARTPHONE.matches) return;
+    var stile = getComputedStyle(box);
+    var spazio = box.clientHeight - parseFloat(stile.paddingTop) - parseFloat(stile.paddingBottom);
+    var dim = parseFloat(getComputedStyle(p).fontSize);
+    while (p.offsetHeight > spazio && dim > MINIMO) {
+      dim = Math.max(MINIMO, Math.floor(dim - 1));
+      p.style.fontSize = dim + "px";
+    }
+  }
+
+  function adattaTutte() { $$(".risposta").forEach(adatta); }
+
   function interroga(id, pulsante) {
     var i = estrai(id);
     ultimo[id] = i;
@@ -101,6 +121,7 @@
     p.className = "risposta-testo appare";
     riempi(p, corrente[id]);
     box.appendChild(p);
+    adatta(box);
 
     pulsante.classList.remove("scuote");
     void pulsante.offsetWidth; // riavvia l'animazione
@@ -485,6 +506,13 @@
     $("#finestra-condividi").addEventListener("click", function (e) {
       if (e.target === e.currentTarget) chiudiFinestra(); // clic sullo sfondo
     });
+
+    var attesa;
+    window.addEventListener("resize", function () {
+      clearTimeout(attesa);
+      attesa = setTimeout(adattaTutte, 120);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(adattaTutte);
 
     caricaArchivio();
     caricaFont();

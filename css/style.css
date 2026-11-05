@@ -127,11 +127,10 @@ body {
 .boccale-dx { transform: scaleX(-1) rotate(-12deg); }
 
 .sottotitolo {
-  margin: 12px 0 6px;
-  font-family: var(--font-oracolo);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 1.02rem;
+  margin: 14px 0 6px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: .14em;
   color: var(--marrone);
 }
 
@@ -185,8 +184,6 @@ body {
   flex: 1;
   min-height: 132px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   background: var(--crema);
   border: 2px dashed var(--ambra);
@@ -194,8 +191,10 @@ body {
   padding: 18px 16px;
 }
 
+/* margin:auto centra il testo senza tagliarlo se è più alto del riquadro */
+.risposta > p { margin: auto; }
+
 .risposta-testo {
-  margin: 0;
   font-family: var(--font-oracolo);
   font-weight: 700;
   font-size: clamp(1.35rem, 5.6vw, 1.7rem);
@@ -208,7 +207,6 @@ body {
 .risposta-testo a { color: var(--ambra-scura); }
 
 .risposta-attesa {
-  margin: 0;
   color: var(--marrone-medio);
   font-family: var(--font-oracolo);
   font-style: italic;
@@ -318,6 +316,7 @@ body {
 }
 .piede p { margin: 0 0 8px; }
 .piede-piccolo { font-size: .76rem; opacity: .85; }
+.piede-corto { display: none; }
 
 /* ---------- Finestra di condivisione ---------- */
 
@@ -404,6 +403,83 @@ body {
   background: var(--oro);
   color: var(--marrone);
   cursor: pointer;
+}
+
+/* ---------- Smartphone: tutto in una schermata, senza scorrere ---------- */
+
+@media (max-width: 819px) {
+  body {
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .testata { flex: none; padding: 10px 12px 15px; }
+  .titolo-riga { gap: 10px; }
+  .boccale { width: clamp(34px, 10vw, 46px); }
+  .titolo { font-size: clamp(1.8rem, 9.4vw, 2.6rem); line-height: 1; text-shadow: 2px 2px 0 var(--crema); }
+  .titolo br { display: none; }
+  .sottotitolo { margin: 5px 0 0; font-size: clamp(.78rem, 3.6vw, .92rem); }
+
+  .contenuto {
+    flex: 1;
+    min-height: 0;
+    grid-template-rows: 1fr 1fr auto;
+    gap: 12px;
+    padding: 14px 12px 2px;
+  }
+
+  .riquadro {
+    min-height: 0;
+    padding: 10px 12px 12px;
+    gap: 8px;
+    border-radius: 18px;
+    box-shadow: 4px 4px 0 var(--marrone);
+  }
+  .etichetta { display: none; }
+  .domanda { font-size: clamp(1rem, 4.6vw, 1.15rem); }
+
+  .risposta {
+    min-height: 0;
+    padding: 8px 10px;
+    border-radius: 12px;
+    overflow-y: auto;
+  }
+  .risposta-testo { font-size: clamp(1.15rem, 5.6vw, 1.45rem); line-height: 1.25; }
+  .risposta-attesa { font-size: .9rem; }
+
+  .pulsante {
+    min-height: 46px;
+    padding: 9px 12px;
+    font-size: clamp(.86rem, 4vw, .98rem);
+    border-radius: 14px;
+    box-shadow: 3px 3px 0 var(--marrone);
+  }
+  .pulsante:active { transform: translate(3px, 3px); }
+  .pulsante-condividi { min-height: 50px; font-size: clamp(.92rem, 4.3vw, 1.05rem); }
+
+  .condivisione { padding-top: 2px; }
+  .condivisione .nota {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .piede {
+    flex: none;
+    margin: 0;
+    padding: 8px 14px calc(8px + env(safe-area-inset-bottom));
+    font-size: .7rem;
+    line-height: 1.35;
+  }
+  .piede p { margin: 0; }
+  .piede-lungo, .piede-piccolo { display: none; }
+  .piede-corto { display: block; }
+
+  body { padding-bottom: 0; }
 }
 
 /* ---------- Movimento ridotto ---------- */

@@ -9,7 +9,7 @@
    Se modifichi solo data/risposte.json non serve toccare nulla.
    ========================================================== */
 
-const VERSIONE = "2026-11-04-1";
+const VERSIONE = "2026-11-05-1";
 const CACHE = "beer-oracle-" + VERSIONE;
 
 const FILE = [
