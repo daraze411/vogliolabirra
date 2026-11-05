@@ -1,5 +1,5 @@
 {
-  "aggiornato": "2026-11-04",
+  "aggiornato": "2026-11-05",
   "fonte": "Beer_Oracle_Archivio_Risposte.xlsm",
   "statiVisibili": [
     "Attiva",
@@ -23,52 +23,52 @@
         },
         {
           "n": 3,
-          "testo": "Tante quante sono le stelle nel cielo",
+          "testo": "Tante quante sono le stelle nel cielo.",
           "stato": "Attiva"
         },
         {
           "n": 4,
-          "testo": "Una per ogni volta che hai bestemmiato",
+          "testo": "Una per ogni volta che hai bestemmiato.",
           "stato": "Attiva"
         },
         {
           "n": 5,
-          "testo": "Due per ogni volta che hai pensato all’Impero Romano",
+          "testo": "Due per ogni volta che hai pensato all’Impero Romano.",
           "stato": "Attiva"
         },
         {
           "n": 6,
-          "testo": "24, ma non più di una all’ora",
+          "testo": "24, ma non più di una all’ora.",
           "stato": "Attiva"
         },
         {
           "n": 7,
-          "testo": "24, ma tutte in un’ora",
+          "testo": "24, ma tutte in un’ora.",
           "stato": "Attiva"
         },
         {
           "n": 8,
-          "testo": "Pi greco",
+          "testo": "Pi greco.",
           "stato": "Attiva"
         },
         {
           "n": 9,
-          "testo": "La tua età meno la metà della tua età. Moltiplica poi per due e non uscire di casa",
+          "testo": "La tua età meno la metà della tua età. Moltiplica poi per due e non uscire di casa.",
           "stato": "Attiva"
         },
         {
           "n": 10,
-          "testo": "Una per ogni promessa che hai fatto di smettere",
+          "testo": "Una per ogni promessa che hai fatto di smettere.",
           "stato": "Attiva"
         },
         {
           "n": 11,
-          "testo": "Un numero primo. Sceglilo con prudenza",
+          "testo": "Un numero primo. Sceglilo con prudenza.",
           "stato": "Attiva"
         },
         {
           "n": 12,
-          "testo": "Chiedilo al barista: è lui che tiene la contabilità",
+          "testo": "Chiedilo al barista: è lui che tiene la contabilità.",
           "stato": "Attiva"
         },
         {
@@ -244,72 +244,72 @@
       "risposte": [
         {
           "n": 1,
-          "testo": "Quella che vuoi, basta che sia birra",
+          "testo": "Quella che vuoi, basta che sia birra.",
           "stato": "Attiva"
         },
         {
           "n": 2,
-          "testo": "Rossa, come i capelli di una ragazza irlandese che danzano al ritmo di una brezza",
+          "testo": "Rossa, come i capelli di una ragazza irlandese che danzano al ritmo di una brezza.",
           "stato": "Attiva"
         },
         {
           "n": 3,
-          "testo": "Amara, perché già la vita è troppo dolce",
+          "testo": "Amara, perché già la vita è troppo dolce.",
           "stato": "Attiva"
         },
         {
           "n": 4,
-          "testo": "Fruttata, perché hai dei gusti orribili",
+          "testo": "Fruttata, perché hai dei gusti orribili.",
           "stato": "Attiva"
         },
         {
           "n": 5,
-          "testo": "Nera, come il batacchio di un manzo nero in una notte senza luna nella prateria",
+          "testo": "Nera, come il batacchio di un manzo nero in una notte senza luna nella prateria.",
           "stato": "Attiva"
         },
         {
           "n": 6,
-          "testo": "Bionda, perché sei una persona semplice",
+          "testo": "Bionda, perché sei una persona semplice.",
           "stato": "Attiva"
         },
         {
           "n": 7,
-          "testo": "IPA, APA, CGIL, CISL e UIL",
+          "testo": "IPA, APA, CGIL, CISL e UIL.",
           "stato": "Attiva"
         },
         {
           "n": 8,
-          "testo": "Bock, per darti un tono da intenditore",
+          "testo": "Bock, per darti un tono da intenditore.",
           "stato": "Attiva"
         },
         {
           "n": 9,
-          "testo": "Moretti da 66 cl, per darti un tono da muratore",
+          "testo": "Moretti da 66 cl, per darti un tono da muratore.",
           "stato": "Attiva"
         },
         {
           "n": 10,
-          "testo": "Una Dreher calda",
+          "testo": "Una Dreher calda.",
           "stato": "Attiva"
         },
         {
           "n": 11,
-          "testo": "Una birra artigianale, ma solo se ti è arrivato lo stipendio",
+          "testo": "Una birra artigianale, ma solo se ti è arrivato lo stipendio.",
           "stato": "Attiva"
         },
         {
           "n": 12,
-          "testo": "Quella con l’etichetta più incomprensibile",
+          "testo": "Quella con l’etichetta più incomprensibile.",
           "stato": "Attiva"
         },
         {
           "n": 13,
-          "testo": "Una pils, perché oggi fingi di essere equilibrato",
+          "testo": "Una pils, perché oggi fingi di essere equilibrato.",
           "stato": "Attiva"
         },
         {
           "n": 14,
-          "testo": "Quella alla spina. Anche il Mastro Birraio ha dei principi",
+          "testo": "Quella alla spina. Anche il Mastro Birraio ha dei principi.",
           "stato": "Attiva"
         },
         {
