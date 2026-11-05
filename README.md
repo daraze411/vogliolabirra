@@ -32,7 +32,7 @@ Non serve toccare altro: l'app scarica sempre l'archivio più recente quando è 
 
 ## Modificare grafica o codice
 
-Dopo aver cambiato HTML, CSS, JavaScript, icone o font, apri `sw.js` e aumenta il valore di `VERSIONE` (es. da `2026-11-04-1` a `2026-11-04-2`). Chi ha l'app installata vedrà il messaggio *«Il Mastro Birraio ha nuove perle di saggezza»* con il pulsante **AGGIORNA**.
+Dopo aver cambiato HTML, CSS, JavaScript, icone o font, apri `sw.js` e aumenta il valore di `VERSIONE` (es. da `2026-11-05-2` a `2026-11-05-3`). Chi ha l'app installata riceve la nuova versione da solo alla prima apertura con la connessione attiva.
 
 ## Struttura
 

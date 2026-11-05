@@ -458,34 +458,17 @@
 
   function registraServiceWorker() {
     if (!("serviceWorker" in navigator)) return;
+    // se c'era già una versione installata, quando subentra quella nuova la pagina si ricarica da sola
+    var cera = Boolean(navigator.serviceWorker.controller);
     var ricaricato = false;
 
     navigator.serviceWorker.addEventListener("controllerchange", function () {
-      if (ricaricato) return;
+      if (!cera || ricaricato) return;
       ricaricato = true;
       location.reload();
     });
 
     navigator.serviceWorker.register("sw.js").then(function (reg) {
-      var mostra = function () {
-        var avviso = $("#avviso-aggiornamento");
-        avviso.hidden = false;
-        $("#applica-aggiornamento").onclick = function () {
-          if (reg.waiting) reg.waiting.postMessage({ tipo: "SALTA_ATTESA" });
-          avviso.hidden = true;
-        };
-      };
-
-      if (reg.waiting && navigator.serviceWorker.controller) mostra();
-
-      reg.addEventListener("updatefound", function () {
-        var nuovo = reg.installing;
-        if (!nuovo) return;
-        nuovo.addEventListener("statechange", function () {
-          if (nuovo.state === "installed" && navigator.serviceWorker.controller) mostra();
-        });
-      });
-
       // controlla se c'è una versione nuova ogni volta che l'app torna in primo piano
       document.addEventListener("visibilitychange", function () {
         if (document.visibilityState === "visible") reg.update().catch(function () {});

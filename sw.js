@@ -1,15 +1,15 @@
 /* ==========================================================
    BEER ORACLE — service worker
    - Funziona offline dopo la prima visita.
-   - La pagina e l'archivio delle risposte vengono presi prima dalla rete
-     (così gli aggiornamenti arrivano subito) e, senza connessione, dalla cache.
-   - Grafica, script e font vengono presi dalla cache.
+   - Ogni file viene preso prima dalla rete, così pagina, grafica e testi sono
+     sempre aggiornati e coerenti tra loro; senza connessione si usa la copia salvata.
+   - Una nuova versione si attiva da sola alla prima apertura dell'app.
 
-   QUANDO MODIFICHI HTML, CSS, JS, ICONE O FONT: aumenta VERSIONE qui sotto.
-   Se modifichi solo data/risposte.json non serve toccare nulla.
+   Dopo una modifica conviene aumentare VERSIONE qui sotto: così anche la copia
+   per l'uso offline viene rinnovata subito.
    ========================================================== */
 
-const VERSIONE = "2026-11-05-1";
+const VERSIONE = "2026-11-05-2";
 const CACHE = "beer-oracle-" + VERSIONE;
 
 const FILE = [
@@ -30,15 +30,12 @@ const FILE = [
   "fonts/Lora-Variable.woff"
 ];
 
-// Risorse sempre cercate prima in rete
-const PRIMA_LA_RETE = [/\/$/, /index\.html$/, /risposte\.json$/, /manifest\.webmanifest$/];
-
 self.addEventListener("install", (evento) => {
   evento.waitUntil(
     caches.open(CACHE).then((cache) =>
       // cache: "reload" evita di salvare copie vecchie dalla cache HTTP del browser
       cache.addAll(FILE.map((f) => new Request(f, { cache: "reload" })))
-    )
+    ).then(() => self.skipWaiting()) // la nuova versione non aspetta: si attiva subito
   );
 });
 
@@ -52,19 +49,13 @@ self.addEventListener("activate", (evento) => {
   );
 });
 
-// La pagina chiede di attivare subito la nuova versione (pulsante "Aggiorna")
-self.addEventListener("message", (evento) => {
-  if (evento.data && evento.data.tipo === "SALTA_ATTESA") self.skipWaiting();
-});
-
 self.addEventListener("fetch", (evento) => {
   const richiesta = evento.request;
   if (richiesta.method !== "GET") return;
   const url = new URL(richiesta.url);
   if (url.origin !== self.location.origin) return;
 
-  const reteFirst = richiesta.mode === "navigate" || PRIMA_LA_RETE.some((r) => r.test(url.pathname));
-  evento.respondWith(reteFirst ? primaLaRete(richiesta) : primaLaCache(richiesta));
+  evento.respondWith(primaLaRete(richiesta));
 });
 
 async function primaLaRete(richiesta) {
@@ -84,18 +75,6 @@ async function primaLaRete(richiesta) {
   }
 }
 
-async function primaLaCache(richiesta) {
-  const cache = await caches.open(CACHE);
-  const salvata = await cache.match(richiesta, { ignoreSearch: true });
-  if (salvata) return salvata;
-  try {
-    const risposta = await fetch(richiesta);
-    if (risposta && risposta.ok) cache.put(richiesta, risposta.clone());
-    return risposta;
-  } catch (e) {
-    return new Response("Offline", { status: 503, statusText: "Offline" });
-  }
-}
 
 // Le navigazioni verso la pagina principale condividono la stessa voce in cache
 function chiave(richiesta) {
