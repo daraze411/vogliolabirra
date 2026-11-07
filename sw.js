@@ -9,7 +9,7 @@
    per l'uso offline viene rinnovata subito.
    ========================================================== */
 
-const VERSIONE = "2026-11-05-2";
+const VERSIONE = "2026-11-07-1";
 const CACHE = "beer-oracle-" + VERSIONE;
 
 const FILE = [

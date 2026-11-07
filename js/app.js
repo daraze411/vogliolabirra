@@ -14,7 +14,7 @@
 
   /* ---------- Stato ---------- */
   var domande = {};   // { A: { domanda, risposte: [testo...] }, B: {...} }
-  var ultimo = {};    // indice dell'ultima risposta estratta per sezione
+  var ultimo = {};    // mazzo di ogni sezione, se il browser non può salvarlo
   var corrente = {};  // testo della risposta attualmente mostrata
   var immagine = null; // Promise<Blob> dell'immagine pronta da condividere
 
@@ -63,13 +63,44 @@
 
   /* ---------- Estrazione ---------- */
 
+  /* Estrazione "a mazzo di carte": ogni risposta esce una sola volta finché non sono
+     uscite tutte, poi si rimescola. Il telefono ricorda quali sono già uscite (anche nei
+     giorni successivi). Le risposte nuove nell'archivio entrano subito nel mazzo, quelle
+     tolte spariscono. Se il browser non può salvare, il mazzo vale solo per la visita. */
+  var CHIAVE_MAZZO = "beer-oracle-mazzo-";
+
+  function leggiMazzo(id) {
+    try {
+      var m = JSON.parse(localStorage.getItem(CHIAVE_MAZZO + id));
+      if (m && Array.isArray(m.visti)) return m;
+    } catch (e) { /* memoria non disponibile */ }
+    return ultimo[id] || { visti: [], ultima: null };
+  }
+
+  function salvaMazzo(id, mazzo) {
+    ultimo[id] = mazzo;
+    try { localStorage.setItem(CHIAVE_MAZZO + id, JSON.stringify(mazzo)); } catch (e) { /* pazienza */ }
+  }
+
   function estrai(id) {
     var elenco = domande[id].risposte;
     if (elenco.length === 1) return 0;
-    var i;
-    do {
-      i = Math.floor(Math.random() * elenco.length);
-    } while (i === ultimo[id]); // mai la stessa risposta due volte di fila
+    var mazzo = leggiMazzo(id);
+    var visti = {};
+    mazzo.visti.forEach(function (t) { visti[t] = true; });
+
+    var candidate = [];
+    elenco.forEach(function (t, i) { if (!visti[t]) candidate.push(i); });
+    if (!candidate.length) {
+      // mazzo finito: si rimescola, ma senza ripetere subito l'ultima uscita
+      mazzo.visti = [];
+      elenco.forEach(function (t, i) { if (t !== mazzo.ultima) candidate.push(i); });
+    }
+
+    var i = candidate[Math.floor(Math.random() * candidate.length)];
+    var giaVisti = mazzo.visti.filter(function (t) { return elenco.indexOf(t) !== -1; }); // dimentica le risposte tolte
+    giaVisti.push(elenco[i]);
+    salvaMazzo(id, { visti: giaVisti, ultima: elenco[i] });
     return i;
   }
 
@@ -112,7 +143,6 @@
 
   function interroga(id, pulsante) {
     var i = estrai(id);
-    ultimo[id] = i;
     corrente[id] = domande[id].risposte[i];
 
     var box = $('.riquadro[data-domanda="' + id + '"] .risposta');
