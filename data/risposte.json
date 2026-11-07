@@ -1,5 +1,5 @@
 {
-  "aggiornato": "2026-11-05",
+  "aggiornato": "2026-11-07",
   "fonte": "Beer_Oracle_Archivio_Risposte.xlsm",
   "statiVisibili": [
     "Attiva",
@@ -235,6 +235,11 @@
           "n": 45,
           "testo": "Una per ogni volta che hai finto di preferire il vino alla birra per fare colpo su qualcuno. Il Mastro Birraio ti giudica.",
           "stato": "Nuova"
+        },
+        {
+          "n": 46,
+          "testo": "Se ti stai facendo punturoni di cortisone forse è meglio non bere oggi. Dai, una.",
+          "stato": "Nuova"
         }
       ]
     },
@@ -446,6 +451,11 @@
           "n": 41,
           "testo": "Quella prodotta da un microbirrificio aperto da tre amici di fantacalcio, stempiati, grassi e divorziati. Costa 11 euro e sa di rancore.",
           "stato": ""
+        },
+        {
+          "n": 42,
+          "testo": "Quella del Birrificio di Barassi, perché sei stato/a bravo/a!",
+          "stato": "Nuova"
         }
       ]
     }
